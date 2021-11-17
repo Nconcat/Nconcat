@@ -51,7 +51,7 @@ def extractShortFt(song):#extrahiert von einem sample die STFT und sample rate
 def createVisArray(db_Array,sl):#sr=samplerate noch einfügen
     #print(db_Array.shape[1])
     #print(db_Array.shape[0])
-    visArr=np.eye(db_Array.shape[1],6)
+    visArr=np.zeros((db_Array.shape[1],6))
     countAv=0#gibt die Anzahl der Werte an, die später zum berechnen der Durchscnitts genutzt wird.
     curAverage=0 # gibt den aufsummierten Db Wert des aktuellen Hz Intervall an. Es gibt 6 Intervalle wie oben beschrieben der Durchscnitt wird berechnet, wenn sich das Intervall ändert
     frequBin=0#gibt an in welchem frequ bin wir uns befinden 0-5 in dem Fall
@@ -62,7 +62,7 @@ def createVisArray(db_Array,sl):#sr=samplerate noch einfügen
         frequBin=0
         curAverage=0#---------------Db values müssen noch mit log geaveraged werden
         countAv=0
-        print("---")
+        #print("---")
         for x in range(db_Array.shape[0]):
             if(curmax<db_Array[x][y]):
                 curmax=db_Array[x][y]
@@ -75,7 +75,8 @@ def createVisArray(db_Array,sl):#sr=samplerate noch einfügen
                 curAverage=0
                 countAv=0
                 curmax=0
-        print(visArr[y])
+        #print(visArr[y])
+    return(visArr)
 
 
 

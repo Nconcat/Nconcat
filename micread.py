@@ -5,6 +5,7 @@ import librosa
 import songify2 as sf2
 
 class AudioHandler(object):
+
     def __init__(self):
         self.FORMAT = pyaudio.paFloat32
         self.CHANNELS = 1
@@ -12,6 +13,7 @@ class AudioHandler(object):
         self.CHUNK = 1024 * 2
         self.p = None
         self.stream = None
+        self.f=0
 
     def start(self):
         self.p = pyaudio.PyAudio()
@@ -19,6 +21,7 @@ class AudioHandler(object):
                                   channels=self.CHANNELS,
                                   rate=self.RATE,
                                   input=True,
+                                  input_device_index=1,
                                   output=False,
                                   stream_callback=self.callback,
                                   frames_per_buffer=self.CHUNK)
@@ -26,12 +29,19 @@ class AudioHandler(object):
     def stop(self):
         self.stream.close()
         self.p.terminate()
+    #def fcount()
+
 
     def callback(self, in_data, frame_count, time_info, flag):
         numpy_array = np.frombuffer(in_data, dtype=np.float32)
-        librosa.feature.mfcc(numpy_array)
+        #librosa.feature.mfcc(numpy_array)# war eine Testfunktion vom Beispielcode
         ft1=sf2.extractShortFt(numpy_array)
-        sf2.createVisArray(ft1,22050)
+        s1=sf2.createVisArray(ft1,22050)
+        self.f+=1
+        if (self.f==3):
+            print("---")
+            print(s1[1])
+            self.f=0
         return None, pyaudio.paContinue
 
     def mainloop(self):
