@@ -40,7 +40,7 @@ class AudioHandler(object):
         self.f+=1
         if (self.f==3):
             print("---")
-            print(s1[1])
+            print(s1[0])
             self.f=0
         return None, pyaudio.paContinue
 
