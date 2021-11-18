@@ -56,7 +56,7 @@ def createVisArray(db_Array,sl):#sr=samplerate noch einfügen
     curAverage=0 # gibt den aufsummierten Db Wert des aktuellen Hz Intervall an. Es gibt 6 Intervalle wie oben beschrieben der Durchscnitt wird berechnet, wenn sich das Intervall ändert
     frequBin=0#gibt an in welchem frequ bin wir uns befinden 0-5 in dem Fall
     curmax=0
-    for y in range(db_Array.shape[1]):#db_Array.shape[1]): #Anzahl der Zeitframes
+    for y in range(1):#db_Array.shape[1]): #Anzahl der Zeitframes
        # print(visArr[y-1])
         curmax=0
         frequBin=0
