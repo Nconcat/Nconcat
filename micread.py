@@ -3,6 +3,7 @@ import pyaudio
 import time
 import librosa
 import songify2 as sf2
+import ledPat as lc
 
 class AudioHandler(object):
 
@@ -21,7 +22,7 @@ class AudioHandler(object):
                                   channels=self.CHANNELS,
                                   rate=self.RATE,
                                   input=True,
-                                  input_device_index=1,
+                                  input_device_index=2,
                                   output=False,
                                   stream_callback=self.callback,
                                   frames_per_buffer=self.CHUNK)
@@ -38,9 +39,10 @@ class AudioHandler(object):
         ft1=sf2.extractShortFt(numpy_array)
         s1=sf2.createVisArray(ft1,22050)
         self.f+=1
-        if (self.f==3):
-            print("---")
-            print(s1[0])
+        if (self.f==2):
+            #print("---")
+            #print(s1[0])
+            lc.visCom(s1[0])
             self.f=0
         return None, pyaudio.paContinue
 
