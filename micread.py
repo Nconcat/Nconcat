@@ -22,7 +22,7 @@ class AudioHandler(object):
                                   channels=self.CHANNELS,
                                   rate=self.RATE,
                                   input=True,
-                                  input_device_index=2,
+                                  input_device_index=1,# 2 ist soundcard 1 ist mic?
                                   output=False,
                                   stream_callback=self.callback,
                                   frames_per_buffer=self.CHUNK)
