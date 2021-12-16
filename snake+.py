@@ -21,3 +21,9 @@ for x in range(snakePositions.size):
     loc=(int(snakePositions[x]/10),int(snakePositions[x]%10))
     field[loc]=2
 print (field)
+
+###
+
+'''value = input("Please enter a string:\n")
+
+print(f'You entered {value}')'''
